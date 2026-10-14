@@ -1,0 +1,16 @@
+@'
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+node_modules/
+frontend/dist/
+.vscode/
+.idea/
+*.log
+Thumbs.db
+.DS_Store
+'@ | Set-Content .gitignore

@@ -1,0 +1,9 @@
+ILLUSTRATIVE OUTPUT FORMAT — NOT EXPERIMENTAL RESULTS
+
+$ python src/evaluate.py
+
+              MAE    RMSE  Precision@10  Recall@10  F1@10  NDCG@10  MAP@10
+Hybrid        --     --         --          --        --       --       --
+SVD           --     --         --          --        --       --       --
+
+The dashes are intentional. Run the evaluation script to obtain measured results.

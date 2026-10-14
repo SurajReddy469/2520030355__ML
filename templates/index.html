@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Intelligent Recommendation System</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 900px; margin: 40px auto; padding: 20px; }
+    .card { border: 1px solid #ddd; border-radius: 10px; padding: 16px; margin: 10px 0; }
+    button { padding: 10px 16px; cursor: pointer; }
+  </style>
+</head>
+<body>
+<h1>Personalized Recommendation System</h1>
+<p>Hybrid collaborative + content-based recommendation demo.</p>
+
+<label>User:
+<select id="user">
+{% for u in users %}
+<option value="{{u}}">{{u}}</option>
+{% endfor %}
+</select>
+</label>
+<button onclick="loadRecommendations()">Recommend</button>
+
+<div id="results"></div>
+
+<script>
+async function loadRecommendations() {
+  const user_id = document.getElementById("user").value;
+  const res = await fetch("/recommend", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({user_id: user_id, n: 10})
+  });
+  const data = await res.json();
+  const box = document.getElementById("results");
+  box.innerHTML = "";
+  data.forEach(x => {
+    box.innerHTML += `<div class="card">
+      <b>${x.title}</b><br>
+      Predicted preference: ${Number(x.predicted_rating).toFixed(2)} / 5
+      <br><button onclick="sendFeedback(${user_id}, ${x.item_id}, 1)">Like</button>
+      <button onclick="sendFeedback(${user_id}, ${x.item_id}, 0)">Not interested</button>
+    </div>`;
+  });
+}
+async function sendFeedback(user_id, item_id, positive) {
+  await fetch("/feedback", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({user_id, item_id, positive, timestamp: Date.now()})
+  });
+  alert("Feedback recorded.");
+}
+</script>
+</body>
+</html>
