@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # RecomMind — Personalized AI Movie Recommendation System
 
 RecomMind is a full-stack, responsive web application and academic machine learning project delivering personalized movie recommendations using the MovieLens 100K dataset.
@@ -90,3 +91,6 @@ npm run dev
 ```
 
 Visit [http://localhost:5173](http://localhost:5173).
+=======
+# ML_Project
+>>>>>>> 398c323317fa8b17321e4b736cfc8235f6cd663b
