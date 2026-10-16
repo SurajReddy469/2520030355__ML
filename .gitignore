@@ -14,3 +14,4 @@ frontend/dist/
 Thumbs.db
 .DS_Store
 '@ | Set-Content .gitignore
+models/preference_model.pkl
