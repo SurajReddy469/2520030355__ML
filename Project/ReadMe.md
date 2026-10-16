@@ -1,382 +1,96 @@
-# Personalized Machine Learning Based Recommendation System
+<<<<<<< HEAD
+# RecomMind — Personalized AI Movie Recommendation System
 
-## Project Overview
-
-The **Personalized Machine Learning Based Recommendation System** is a movie recommendation system that uses user ratings and movie information to generate personalized movie recommendations.
-
-The project uses the **MovieLens Latest Small dataset** and applies Exploratory Data Analysis (EDA), TF-IDF feature extraction, cosine similarity, and machine learning techniques to understand user preferences and recommend movies.
+RecomMind is a full-stack, responsive web application and academic machine learning project delivering personalized movie recommendations using the MovieLens 100K dataset.
 
 ---
 
-## Objectives
+## 🌟 Features
 
-- Analyze movie and user rating data.
-- Understand user preferences from historical ratings.
-- Perform Exploratory Data Analysis (EDA).
-- Analyze movie genres and popularity.
-- Extract movie content features using TF-IDF.
-- Calculate similarity between movies using cosine similarity.
-- Generate content-based movie recommendations.
-- Create user and movie rating features.
-- Train a Random Forest regression model for rating prediction.
-- Evaluate the machine learning model using RMSE, MAE, and R².
+- **Hybrid Recommendation Model**: Combines **Surprise SVD** collaborative filtering (80 factors, learning latent user-movie interactions) and **TF-IDF + Cosine Similarity** content-based filtering (analyzing genre combinations and user affinity to liked titles).
+- **Personalized Recommendations Page**: Request recommendations by User ID (1–943) with customizable counts (5–50) and live predicted rating breakdown.
+- **Movie Discovery & Search**: Full catalog browsing, real-time title search, genre filtering, multi-criteria sorting (popularity, rating, year, title), and pagination across 1,682 titles.
+- **Movie Details Page**: Deep dive into individual movies with year, average rating, rating counts, genre tags, IMDb link, and dynamic similar movie recommendations.
+- **Local Watchlist**: Bookmark movies to a browser-persistent watchlist with clear-all and removal controls.
+- **Light Mode by Default**: Modern, bright cinematic styling with purple and blue accents, responsive grids, and an optional dark mode toggle that persists in local storage.
+- **Dual Backend Architecture**: FastAPI backend with full OpenAPI schema and CORS support, alongside the original Flask application.
 
 ---
 
-## Dataset
+## 🏗️ Tech Stack
 
-The project uses the **MovieLens ml-latest-small dataset**.
+- **Frontend**: React 18, TypeScript, Vite, Tailwind CSS, Lucide React, React Router DOM, Axios.
+- **Backend**: Python 3.12, FastAPI, Uvicorn, Flask (preserved), Pandas, NumPy.
+- **Machine Learning**: Scikit-Surprise (SVD), Scikit-Learn (TF-IDF, Cosine Similarity, Random Forest Regressor), Joblib.
+- **Dataset**: MovieLens 100K (100,000 ratings, 943 users, 1,682 movies).
 
-### Main Dataset Files
+---
+
+## 📂 Project Directory Structure
 
 ```text
-movies.csv
-ratings.csv
-```
-
-### `movies.csv`
-
-Contains information about movies.
-
-| Column | Description |
-|---|---|
-| `movieId` | Unique identifier of the movie |
-| `title` | Movie title and release year |
-| `genres` | Genres associated with the movie |
-
-### `ratings.csv`
-
-Contains user ratings for movies.
-
-| Column | Description |
-|---|---|
-| `userId` | Unique identifier of the user |
-| `movieId` | Unique identifier of the movie |
-| `rating` | Rating given by the user |
-| `timestamp` | Time when the rating was given |
-
-### Dataset Statistics
-
-The MovieLens Small dataset contains approximately:
-
-- **9,742 movies**
-- **100,836 ratings**
-- **610 users**
-- **9,724 movies with ratings**
-- Rating scale: **0.5 to 5.0**
-
----
-
-## Technologies Used
-
-- Python
-- Google Colab
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-- Scikit-learn
-- TF-IDF
-- Cosine Similarity
-- Random Forest Regression
-
----
-
-## Project Workflow
-
-```text
-MovieLens Dataset
-       |
-       v
-Data Loading
-       |
-       v
-Data Cleaning
-       |
-       v
-Exploratory Data Analysis
-       |
-       +----------------------+
-       |                      |
-       v                      v
-Movie Information       User Ratings
-       |                      |
-       +----------+-----------+
-                  |
-                  v
-          Feature Extraction
-                  |
-                  v
-             TF-IDF
-                  |
-                  v
-        Cosine Similarity
-                  |
-                  v
-     Content-Based Recommendation
-                  |
-                  v
-       User/Movie Feature Creation
-                  |
-                  v
-       Random Forest Regression
-                  |
-                  v
-        Rating Prediction
-                  |
-                  v
-        Model Evaluation
-```
-
----
-
-## Exploratory Data Analysis
-
-The EDA section performs the following analysis:
-
-### 1. Dataset Information
-
-- Dataset dimensions
-- Number of users
-- Number of movies
-- Number of rated movies
-- Column information
-
-### 2. Data Quality Analysis
-
-- Data types
-- Missing values
-- Duplicate records
-
-### 3. Rating Analysis
-
-- Average rating
-- Minimum rating
-- Maximum rating
-- Rating distribution
-- Rating frequency
-
-### 4. Genre Analysis
-
-The project analyzes the distribution of movie genres, including genres such as:
-
-- Action
-- Adventure
-- Animation
-- Comedy
-- Crime
-- Drama
-- Fantasy
-- Horror
-- Romance
-- Sci-Fi
-- Thriller
-
-### 5. User Activity Analysis
-
-The project analyzes:
-
-- Number of ratings per user
-- Average rating given by users
-- Most active users
-
-### 6. Movie Popularity Analysis
-
-The project identifies:
-
-- Most-rated movies
-- Average movie ratings
-- Popular highly-rated movies
-
----
-
-## Recommendation System
-
-The recommendation component uses movie genres as content information.
-
-### TF-IDF
-
-TF-IDF converts movie genre information into numerical feature vectors.
-
-For example:
-
-```text
-Toy Story
-Adventure Animation Children Comedy Fantasy
-```
-
-is converted into numerical TF-IDF features.
-
-### Cosine Similarity
-
-Cosine similarity is then used to calculate the similarity between movies.
-
-The system can recommend movies similar to a selected movie.
-
-Example:
-
-```python
-recommend_movies("Toy Story (1995)", 10)
-```
-
-This returns a list of movies with their similarity scores.
-
----
-
-## Machine Learning Model
-
-The project also creates user and movie-level features.
-
-### User Features
-
-```text
-user_mean_rating
-user_rating_count
-```
-
-### Movie Features
-
-```text
-movie_mean_rating
-movie_rating_count
-```
-
-These features are used to train a **Random Forest Regression** model.
-
-### Model Input
-
-```text
-user_mean_rating
-user_rating_count
-movie_mean_rating
-movie_rating_count
-```
-
-### Target
-
-```text
-rating
-```
-
----
-
-## Model Evaluation
-
-The Random Forest model is evaluated using:
-
-### RMSE
-
-Root Mean Squared Error measures the average magnitude of prediction errors.
-
-### MAE
-
-Mean Absolute Error measures the average absolute difference between predicted and actual ratings.
-
-### R² Score
-
-R² measures how well the model explains the variation in the target ratings.
-
-The Colab notebook prints all three metrics after training.
-
----
-
-## Google Colab
-
-The final EDA notebook automatically downloads the MovieLens dataset.
-
-### Steps to Run
-
-1. Open Google Colab.
-2. Upload:
-
-```text
-Personalized_Recommendation_Final_EDA_Colab.ipynb
-```
-
-3. Run the cells from top to bottom.
-4. The notebook automatically downloads the MovieLens dataset.
-5. EDA visualizations will be generated.
-6. TF-IDF and cosine similarity will be calculated.
-7. The recommendation function will be tested.
-8. The Random Forest model will be trained.
-9. Model evaluation metrics will be displayed.
-
----
-
-## Project Files
-
-Recommended project structure:
-
-```text
-PersonalizedRecommendationSystem/
-│
-├── Personalized_Recommendation_Final_EDA_Colab.ipynb
-│
+RecomMind/
 ├── data/
-│   └── raw/
-│       └── ml-latest-small/
-│           ├── movies.csv
-│           ├── ratings.csv
-│           ├── tags.csv
-│           └── links.csv
-│
+│   ├── ml-100k/            # Extracted raw MovieLens files
+│   └── processed/          # Processed CSVs (ratings, items, users)
+├── frontend/
+│   ├── src/
+│   │   ├── components/     # Navbar, Footer, MovieCard, MovieCardSkeleton
+│   │   ├── hooks/          # useTheme, useWatchlist
+│   │   ├── pages/          # Home, Discover, Recommendations, MovieDetail, Watchlist, About
+│   │   ├── services/       # api.ts (Axios service client)
+│   │   ├── types/          # TypeScript interfaces matching backend models
+│   │   ├── utils/          # poster.ts (SVG dynamic placeholder fallback)
+│   │   ├── App.tsx
+│   │   └── main.tsx
+│   ├── .env.example
+│   ├── package.json
+│   └── vite.config.ts
+├── models/
+│   ├── hybrid_model.pkl    # Serialized hybrid SVD + content recommender
+│   └── preference_model.pkl# Serialized Random Forest preference predictor
+├── reports/
+│   ├── academic_report.md
+│   ├── architecture.md
+│   └── sample_output.txt
+├── src/
+│   ├── api.py              # FastAPI REST application (new)
+│   ├── app.py              # Flask application (preserved)
+│   ├── download_data.py    # MovieLens 100K downloader
+│   ├── evaluate.py         # Evaluation metrics script
+│   ├── model_utils.py      # HybridRecommender core implementation
+│   ├── preprocess.py       # Data cleaning and CSV extraction
+│   └── train.py            # Model training pipeline
+├── API_DOCUMENTATION.md
+├── ARCHITECTURE.md
 ├── README.md
-│
-└── results/
-    └── EDA graphs and model results
-```
-
-For the current EDA and recommendation workflow, the essential datasets are:
-
-```text
-movies.csv
-ratings.csv
+├── requirements.txt
+└── SETUP_GUIDE.md
 ```
 
 ---
 
-## Example Recommendation
+## 🚀 Quick Start
 
-```python
-recommend_movies("Toy Story (1995)", 10)
+### 1. Backend
+
+```bash
+pip install -r requirements.txt
+python src/download_data.py
+python src/preprocess.py
+python src/train.py
+uvicorn src.api:app --reload --host 127.0.0.1 --port 8000
 ```
 
-The function returns similar movies based on their genre-content similarity.
+### 2. Frontend
 
----
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-## Expected Output
-
-The project produces:
-
-- Dataset statistics
-- Missing-value analysis
-- Rating distribution graphs
-- Genre distribution graphs
-- User activity analysis
-- Movie popularity analysis
-- TF-IDF feature matrix
-- Cosine similarity matrix
-- Movie recommendations
-- Random Forest model
-- RMSE
-- MAE
-- R² score
-
----
-
-## Conclusion
-
-The Personalized Machine Learning Based Recommendation System combines exploratory data analysis, content-based recommendation, and machine learning to analyze movie preferences and generate personalized recommendations.
-
-The system uses movie genres for content-based similarity and user/movie rating statistics for machine learning-based rating prediction. The approach demonstrates how machine learning and data analysis can be combined to build an intelligent recommendation system.
-
----
-
-## Dataset Source
-
-The project uses the **MovieLens dataset provided by GroupLens Research**.
-
-Official dataset:
-
-https://files.grouplens.org/datasets/movielens/ml-latest-small.zip
+Visit [http://localhost:5173](http://localhost:5173).
+=======
+# ML_Project
+>>>>>>> 398c323317fa8b17321e4b736cfc8235f6cd663b

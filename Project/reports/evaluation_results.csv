@@ -1,0 +1,2 @@
+Model,MAE,RMSE
+Hybrid (SVD+Content),0.9711,1.1642
